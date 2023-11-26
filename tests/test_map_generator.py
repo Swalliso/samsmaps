@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch, Mock
-import os
 from map_generator import HexTile, HexGrid, generate_and_display_map, display_map
 
 class TestHexTile(unittest.TestCase):

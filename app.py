@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from map_generator import generate_and_display_map
-import os
 
 app = Flask(__name__)
 

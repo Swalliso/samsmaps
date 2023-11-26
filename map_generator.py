@@ -3,7 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.patches import RegularPolygon
 import numpy as np
-import os
+
 matplotlib.use('Agg')
 
 def display_map(hex_grid, filename):
