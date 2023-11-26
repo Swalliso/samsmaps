@@ -1,0 +1,19 @@
+# This is a CODEOWNERS file
+# It specifies the owners of files and directories in a repository
+
+# Syntax:
+# <pattern> <owner>
+
+# Example:
+# /path/to/file @username
+
+# Add your own rules below:
+
+# Specify the owner for all files in the repository
+* @Swalliso
+
+# Specify the owner for a specific directory
+# /path/to/directory @username
+
+# Specify the owner for a specific file
+# /path/to/file @username
