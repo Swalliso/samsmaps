@@ -5,30 +5,36 @@ class HexGrid:
 
     # Default probabilities, features, and resources for each terrain type
     DEFAULT_TERRAIN_PROBABILITIES = {
-        'grass': 0.3,
+        'grass': 0.2,
         'plains': 0.2,
         'desert': 0.1,
         'snow': 0.1,
         'tundra': 0.1,
         'water': 0.2,
+        'mountain': 0.05,
+        'wetland': 0.05
     }
 
     DEFAULT_TERRAIN_FEATURES = {
-        'grass': ['woods', 'rainforests'],
-        'plains': ['woods'],
-        'desert': ['oasis'],
-        'snow': ['ice'],
-        'tundra': ['ice'],
-        'water': ['reef'],
+        'grassland': ['savanna', 'meadow', 'farmland'],
+        'plains': ['plateaus', 'hills', 'riverbank'],
+        'desert': ['oasis', 'hills', 'dunes'],
+        'snow': ['ice', 'glaciers'],
+        'tundra': ['permafrost', 'hills'],
+        'water': ['reef', 'kelp', 'atoll'],
+        'mountain': ['peaks', 'valleys'],
+        'wetland': ['mangroves', 'bog', 'marsh', 'fen', 'swamp']
     }
 
     DEFAULT_TERRAIN_RESOURCES = {
         'grass': ['bananas', 'deer', 'ivory', 'spices', 'sugar', 'truffles'],
-        'plains': ['copper', 'maize'],
-        'desert': ['gems', 'gold'],
-        'snow': ['furs', 'oil'],
-        'tundra': ['furs', 'oil'],
-        'water': ['fish', 'pearls', 'whales']
+        'plains': ['copper', 'maize', 'wheat'],
+        'desert': ['gems', 'gold', 'oil'],
+        'snow': ['furs', 'oil', 'silver'],
+        'tundra': ['furs', 'oil', 'fish'],
+        'water': ['fish', 'pearls', 'whales', 'crabs'],
+        'mountain': ['gold', 'silver', 'copper'],
+        'wetland': ['fish', 'reeds', 'peat']
     }
 
     # Offsets to find neighboring tiles in a hex grid
@@ -78,7 +84,9 @@ class HexGrid:
             'desert': {'plains': 0.3, 'grass': 0.1, 'desert': 0.6},
             'snow': {'tundra': 0.4, 'snow': 0.6},
             'tundra': {'snow': 0.4, 'tundra': 0.6},
-            'water': {'water': 1.0}
+            'water': {'water': 1.0},
+            'mountain': {'mountain': 1.0},
+            'wetland': {'wetland': 1.0}
         }
 
         neighbor_types = self.get_neighbor_types(row, col)
