@@ -16,7 +16,12 @@ class HexGrid:
     }
 
     DEFAULT_TERRAIN_FEATURES = {
-        'grassland': ['savanna', 'meadow', 'farmland'],
+        # Use terrain type names as keys so features can be looked up correctly.
+        # Previously, the dictionary used the key 'grassland', but the rest of
+        # the code refers to the terrain type as 'grass'. Because of this
+        # mismatch, grass tiles never received any features. Updating the key
+        # ensures grass terrain can have associated features.
+        'grass': ['savanna', 'meadow', 'farmland'],
         'plains': ['plateaus', 'hills', 'riverbank'],
         'desert': ['oasis', 'hills', 'dunes'],
         'snow': ['ice', 'glaciers'],
@@ -74,6 +79,17 @@ class HexGrid:
     def get_neighbor_types(self, row, col):
         # Retrieve the terrain types of neighboring tiles
         return [self.grid[r][c].terrain_type for r, c in self.get_neighbor_coords(row, col)]
+
+    def most_common_neighbor_type(self, row, col):
+        """Return the most common terrain type among neighboring tiles.
+
+        If the tile has no neighbors (e.g., a 1x1 grid), ``None`` is returned.
+        """
+        neighbor_types = self.get_neighbor_types(row, col)
+        if not neighbor_types:
+            return None
+        # Compute the most frequent terrain type among neighbors
+        return max(set(neighbor_types), key=neighbor_types.count)
 
     def choose_terrain_type(self, row, col):
         # Determine the terrain type of a tile based on its neighbors
